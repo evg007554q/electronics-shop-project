@@ -31,7 +31,7 @@ class Item:
     @name.setter
     def name(self, new_name):
         if len(new_name) > 10:
-            print('Не подходит - надо меньше букв')
+            raise Exception('Не подходит - надо меньше букв')
         else:
             self.__name = new_name
 

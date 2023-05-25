@@ -33,10 +33,13 @@ def test_HW2(item1):
     assert item1.name == 'Смартфон'
 
     # длина наименования товара больше 10 символов
-    item1.name = 'СуперСмартфон'
+    # item1.name = 'СуперСмартфон'
     assert item1.name == 'Смартфон'
-    assert item1.name != 'СуперСмартфон'
+    # assert item1.name != 'СуперСмартфон'
     # Exception: Длина наименования товара превышает 10 символов.
+    with pytest.raises(Exception):
+        item1.name = 'СуперСмартфон'
+
     # '../src/items.csv'
     Item.instantiate_from_csv()  # создание объектов из данных файла
     assert len(Item.all) == 5  # в файле 5 записей с данными по товарам

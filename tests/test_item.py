@@ -32,7 +32,7 @@ def test_HW2(item1):
 
     assert item1.name == 'Смартфон'
 
-    # длина наименования товара больше 10 символов
+      # длина наименования товара больше 10 символов
     # item1.name = 'СуперСмартфон'
     assert item1.name == 'Смартфон'
     # assert item1.name != 'СуперСмартфон'
@@ -52,3 +52,9 @@ def test_HW2(item1):
     assert Item.string_to_number('5.0') == 5
     assert Item.string_to_number('5.5') == 5.5
 
+
+def test_HW3():
+    # HW 3
+    item_hw3 = Item("Смартфон", 10000, 20)
+    assert repr(item_hw3) == "Item(Смартфон, 10000, 20)"
+    assert str(item_hw3) == 'Смартфон'

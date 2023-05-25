@@ -1,4 +1,5 @@
 import csv
+import os.path
 
 
 class Item:
@@ -56,8 +57,10 @@ class Item:
     @classmethod
     def instantiate_from_csv(cls):
         """класс-метод, инициализирующий экземпляры класса `Item` данными из файла _src/items.csv_"""
+        # , file_name_svc = '../src/items.csv'
+        file_name_svc = os.path.join('../src','items.csv')
         cls.all.clear()
-        with open('../src/items.csv', newline = '') as cvsfile:
+        with open(file_name_svc, newline = '',encoding='utf-8') as cvsfile:
             reader = csv.DictReader(cvsfile)
             for row in reader:
-                print(row)
+                cls(row['name'],row['price'],row['quantity'])

@@ -25,3 +25,27 @@ def test_apply_discount(item1):
     item1.apply_discount()
     assert item1.calculate_total_price() == 160000
 
+def test_HW2(item1):
+
+    # длина наименования товара меньше 10 символов
+    item1.name = 'Смартфон'
+
+    assert item1.name == 'Смартфон'
+
+    # длина наименования товара больше 10 символов
+    item1.name = 'СуперСмартфон'
+    assert item1.name == 'Смартфон'
+    assert item1.name != 'СуперСмартфон'
+    # Exception: Длина наименования товара превышает 10 символов.
+    # '../src/items.csv'
+    Item.instantiate_from_csv()  # создание объектов из данных файла
+    assert len(Item.all) == 5  # в файле 5 записей с данными по товарам
+
+    item1 = Item.all[0]
+    assert item1.name == 'СмартФон'
+
+    # print(item1.name)
+    assert Item.string_to_number('5') == 5
+    assert Item.string_to_number('5.0') == 5
+    assert Item.string_to_number('5.5') == 5.5
+

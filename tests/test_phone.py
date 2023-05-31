@@ -1,9 +1,11 @@
+import pytest
+
 from src.item import Item
 from src.phone import Phone
 
-if __name__ == '__main__':
 
-    # смартфон iPhone 14, цена 120_000, количество товара 5, симкарт 2
+def test_HW4():
+    # HW 4
     phone1 = Phone("iPhone 14", 120000, 5, 2)
 
     assert str(phone1) == 'iPhone 14'
@@ -13,6 +15,9 @@ if __name__ == '__main__':
     item1 = Item("Смартфон", 10000, 20)
     assert item1 + phone1 == 25
     assert phone1 + phone1 == 10
+
+    with pytest.raises(Exception):
+        phone1.number_of_sim = 0
     #
     # phone1.number_of_sim = 0
     # # ValueError: Количество физических SIM-карт должно быть целым числом больше нуля.

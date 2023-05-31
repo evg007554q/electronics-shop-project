@@ -56,6 +56,11 @@ class Item:
         """
         self.price = self.pay_rate*self.base_price
 
+    def __add__(self, other):
+        if not isinstance(other, Item):
+            raise ValueError('нельзя было Phone или Item с экземплярами не Phone или Item классов.')
+        return  self.quantity + other.quantity
+
     @staticmethod
     def string_to_number(st_num):
         """статический метод, возвращающий float число из числа-строки"""

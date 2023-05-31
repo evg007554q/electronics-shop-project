@@ -26,6 +26,32 @@ optional = false
 python-versions = ">=3.7"
 
 [[package]]
+name = "item"
+version = "0.0.3"
+description = "API to describe schema of data to extract them from HTML"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+selection = "*"
+weblib = "*"
+
+[[package]]
+name = "lxml"
+version = "4.9.2"
+description = "Powerful and Pythonic XML processing library combining libxml2/libxslt with the ElementTree API."
+category = "main"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, != 3.4.*"
+
+[package.extras]
+cssselect = ["cssselect (>=0.7)"]
+html5 = ["html5lib"]
+htmlsoup = ["beautifulsoup4"]
+source = ["Cython (>=0.29.7)"]
+
+[[package]]
 name = "packaging"
 version = "23.1"
 description = "Core utilities for Python packages"
@@ -65,6 +91,36 @@ tomli = {version = ">=1.0.0", markers = "python_version < \"3.11\""}
 testing = ["argcomplete", "attrs (>=19.2.0)", "hypothesis (>=3.56)", "mock", "nose", "pygments (>=2.7.2)", "requests", "xmlschema"]
 
 [[package]]
+name = "pytils"
+version = "0.4.1"
+description = "Russian-specific string utils"
+category = "main"
+optional = false
+python-versions = "^3.7"
+
+[[package]]
+name = "selection"
+version = "0.0.21"
+description = "API to extract content from HTML & XML documents"
+category = "main"
+optional = false
+python-versions = ">=3.8"
+
+[package.dependencies]
+lxml = {version = "*", markers = "platform_system != \"Windows\""}
+
+[package.extras]
+pyquery = ["pyquery"]
+
+[[package]]
+name = "six"
+version = "1.16.0"
+description = "Python 2 and 3 compatibility utilities"
+category = "main"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*"
+
+[[package]]
 name = "tomli"
 version = "2.0.1"
 description = "A lil' TOML parser"
@@ -72,16 +128,50 @@ category = "main"
 optional = false
 python-versions = ">=3.7"
 
+[[package]]
+name = "user-agent"
+version = "0.1.10"
+description = "User-Agent generator"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+six = "*"
+
+[[package]]
+name = "weblib"
+version = "0.1.30"
+description = "Set of tools for web scraping projects"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+pytils = "*"
+six = "*"
+user_agent = "*"
+
+[package.extras]
+full = ["feedparser", "selenium", "lxml"]
+
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "f5819a7732eae62f0cb8a8d92176c0c7fef73772b2caab3fd90ee5a24324bdc7"
+content-hash = "f7eb9c6ad23e1dd4ddff22f07da9f32f72871c9671a8da32be2f704c4c0773f6"
 
 [metadata.files]
 colorama = []
 exceptiongroup = []
 iniconfig = []
+item = []
+lxml = []
 packaging = []
 pluggy = []
 pytest = []
+pytils = []
+selection = []
+six = []
 tomli = []
+user-agent = []
+weblib = []

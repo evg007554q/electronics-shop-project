@@ -45,7 +45,6 @@ class Item:
     def calculate_total_price(self) -> float:
         """
         Рассчитывает общую стоимость конкретного товара в магазине.
-
         :return: Общая стоимость товара.
         """
         return self.price * self.quantity
@@ -67,12 +66,30 @@ class Item:
         return float(st_num)
 
     @classmethod
-    def instantiate_from_csv(cls):
+    def instantiate_from_csv(cls,File_name='items.csv'):
         """класс-метод, инициализирующий экземпляры класса `Item` данными из файла _src/items.csv_"""
         # , file_name_svc = '../src/items.csv'
-        file_name_svc = os.path.join('../src','items.csv')
         cls.all.clear()
-        with open(file_name_svc, newline = '',encoding='utf-8') as cvsfile:
-            reader = csv.DictReader(cvsfile)
-            for row in reader:
-                cls(row['name'],row['price'],row['quantity'])
+        file_name_svc = os.path.join('../src', File_name)
+        try:
+            with open(file_name_svc, newline = '',encoding='utf-8') as cvsfile:
+                reader = csv.DictReader(cvsfile)
+
+                for row in reader:
+                    try:
+                        if len(row) != 3:
+                            raise InstantiateCSVError
+                        if None in row.values():
+                            raise InstantiateCSVError
+
+                        cls(row['name'],row['price'],row['quantity'])
+                    except:
+                        raise InstantiateCSVError
+        except FileNotFoundError:
+            raise FileNotFoundError('Отсутствует файл item.csv')
+
+class InstantiateCSVError(Exception):
+    def __init__(self, *args, **kwargs):
+        self.message = args[0] if args else 'Файл item.csv поврежден'
+    def __str__(self):
+        return self.message

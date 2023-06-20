@@ -1,6 +1,6 @@
 """Здесь надо написать тесты с использованием pytest для модуля item."""
 import pytest
-from src.item import Item
+from src.item import Item, InstantiateCSVError
 
 
 @pytest.fixture
@@ -58,3 +58,15 @@ def test_HW3():
     item_hw3 = Item("Смартфон", 10000, 20)
     assert repr(item_hw3) == "Item(Смартфон, 10000, 20)"
     assert str(item_hw3) == 'Смартфон'
+
+
+def test_HW6():
+
+    Item.instantiate_from_csv()  # создание объектов из данных файла
+    assert len(Item.all) == 5  # в файле 5 записей с данными по товарам
+
+    with pytest.raises(FileNotFoundError):
+        Item.instantiate_from_csv('items1.csv')  # создание объектов из данных файла
+
+    with pytest.raises(InstantiateCSVError):
+        Item.instantiate_from_csv('items2.csv')  # создание объектов из данных файла
